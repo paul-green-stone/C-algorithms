@@ -4,7 +4,7 @@
 /* ================================================================ */
 
 int compare(int* a, int* b) {
-    return *a < *b;
+    return *a - *b;
 }
 
 /* ================================ */
@@ -50,10 +50,16 @@ int main(int argc, char** argv) {
     
     insertion_sort(array, sizeof(array) / sizeof(array[0]), sizeof(int), (int (*)(const void*, const void*)) compare);
     
-    print_array(array, sizeof(array) / sizeof(array[0]));
-    print_array(sorted_array, sizeof(array) / sizeof(array[0]));
-    
     assert(arrays_equal(array, sorted_array, sizeof(array) / sizeof(array[0]), sizeof(int), (int (*)(const void*, const void*)) compare) == 1);
+    printf("insertion sort (ascending): \033[0;32mDONE\033[0;37m\n");
+    
+    int array1[] = {1, 9, 6, 0, 7, 8, 4, 6};
+    int sorted_array1[] = {0, 1, 4, 6, 6, 7, 8, 9};
+    
+    quicksort(array1, sizeof(array1) / sizeof(array1[0]), sizeof(int), 0, sizeof(array1) / sizeof(array1[0]) - 1, (int (*)(const void*, const void*)) compare);
+    
+    assert(arrays_equal(array1, sorted_array1, sizeof(array) / sizeof(array[0]), sizeof(int), (int (*)(const void*, const void*)) compare) == 1);
+    printf("quicksort (ascending): \033[0;32mDONE\033[0;37m\n");
     
     return EXIT_SUCCESS;
 }
