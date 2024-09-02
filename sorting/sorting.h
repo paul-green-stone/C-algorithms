@@ -5,11 +5,11 @@
 
 extern int insertion_sort_int(int* data, int size);
 
-/* ================================ */
+/* ================================================================ */
 
 extern int insertion_sort(void* data, int size, size_t element_size, int (*compare)(const void* data1, const void* data2));
 
-/* ================================ */
+/* ================================================================ */
 
 /*
  * Uses quicksort to sort the array of elements in `data` The number of elements in `data` is specified by `size`.

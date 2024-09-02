@@ -7,8 +7,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <errno.h>
+#include <math.h>
 
 #include "sorting/sorting.h"
+#include "math/NumberTheory/factorization.h"
 
 /* ================================================================ */
 

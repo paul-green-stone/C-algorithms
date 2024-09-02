@@ -2,7 +2,7 @@
 OBJDIR := objects
 
 # Full names of object files
-OBJECTS	:= $(addprefix $(OBJDIR)/, sort_search.o)
+OBJECTS	:= $(addprefix $(OBJDIR)/, sort_search.o math.o)
 
 # ================================================================ #
 
@@ -14,7 +14,7 @@ CC := gcc
 CFLAGS := -g -c
 
 # Extra layer of protection
-ALL_CFLAGS := $(CFLAGS) -Wall -Wextra -pedantic-errors -fPIC -O2
+ALL_CFLAGS := $(CFLAGS) -Wall -Wextra -pedantic-errors -fPIC -O2 -lm
 
 # ================================ #
 
@@ -69,6 +69,9 @@ TARGET_SHARED := $(LIB_PREFIX)$(LIB_NAME)$(DLL_SUFFIX)
 # Setting the value of the variable SORT_SEARCH to the path of the `sorting.c`
 SORT_SEARCH := $(addprefix sorting/, sorting.c)
 
+# Setting the value of the variable MATH to the path of the `math/**/*.c`
+MATH := $(wildcard math/**/*.c)
+
 # ================================================================ #
 # ================================================================ #
 # ================================================================ #
@@ -89,6 +92,10 @@ $(TARGET_SHARED): $(OBJECTS)
 # Building the `sort_search.o` object file from the SORT_SEARCH
 $(OBJDIR)/sort_search.o: $(SORT_SEARCH) sorting/sorting.h
 	$(CC) $(ALL_CFLAGS) $(CFLAGS) -o $@ $<
+
+# Building the `math.o` object file from the MATH
+$(OBJDIR)/math.o: $(MATH) $(wildcard math/**/*.h)
+	$(CC) $(ALL_CFLAGS) $(CFLAGS) -o $@ $(MATH)
 
 # ================================================================ #
 # ================================================================ #
